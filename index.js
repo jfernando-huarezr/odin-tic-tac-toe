@@ -23,41 +23,38 @@ const gameboard = (function () {
     const checkWin = function (symbol) {
         let win = true
 
-        //horizontals
-        for(let i = 0; i < board.length; i++) {
-            win = true
-            for(let j = 0; j < board[i].length; j++) {
-                if (board[i][j] !== symbol) {
-                    win = false
-                    break;
-                }
-            }
+        // //horizontals
+        // for(let i = 0; i < board.length; i++) {
+        //     win = true
+        //     for(let j = 0; j < board[i].length; j++) {
+        //         if (board[i][j] !== symbol) {
+        //             win = false
+        //             break;
+        //         }
+        //     }
+        //     if(win) return win
+        // }
 
-            if(win) return win
-        }
-
-        //verticals
-        for(let i = 0; i < board[0].length; i++) {
-            win = true
-            for(let j = 0; j < board.length; j++) {
-                if (board[j][i] !== symbol) {
-                    win = false
-                    break;
-                } 
-            }
-
-            if(win) return win
-        }
+        // //verticals
+        // for(let i = 0; i < board[0].length; i++) {
+        //     win = true
+        //     for(let j = 0; j < board.length; j++) {
+        //         if (board[j][i] !== symbol) {
+        //             win = false
+        //             break;
+        //         } 
+        //     }
+        //     if(win) return win
+        // }
 
         //diagonals
         for(let i = 0; i < board.length; i++) {
             win = true
+            console.log(i)
             if (board[i][i] !== symbol)  {
                 win = false
                 break;
             }
-
-            if(win) return win
         }
 
         for(let i = 0; i < board.length; i++) {
@@ -66,8 +63,6 @@ const gameboard = (function () {
                 win = false
                 break;
             } 
-
-            if(win) return win
         }    
 
         return win
@@ -89,22 +84,31 @@ const player =  function(name, symbol) {
     return {getName, getSymbol, getPoints, addPoints}
 }
 
-const ui = function () {
+const ui = function (player1, player2) {
 
     const tiles = document.querySelectorAll(".tile")
     tiles.forEach((element, index) => {
-        element.addEventListener('click', (e) => {
+        element.addEventListener('click', () => {
             const symbol = game.currentSymbol()
-            if (!element.textContent) {
-                element.textContent = symbol
-                gameboard.updateBoard(index, symbol)
-            } 
-            
-            console.log(gameboard.checkWin(symbol))
-        })
-    })
+            console.log(gameboard.checkWin(player1.getSymbol()))
+
+            if (!gameboard.checkWin(player1.getSymbol()) && !gameboard.checkWin(player2.getSymbol())) {
+                if (!element.textContent) {
+                    element.textContent = symbol
+                    gameboard.updateBoard(index, symbol)
+                } 
+                    
+                if(gameboard.checkWin(player1.getSymbol())) {
+                    console.log("Player 1 Won")
+                }
     
-} ()
+                else if (gameboard.checkWin(player2.getSymbol())) {
+                    console.log("Player 2 Won")
+                }
+            }    
+        })
+    })   
+}
 
 const game = function () {
     const player1 = player("Fernando", "X")
@@ -121,6 +125,9 @@ const game = function () {
             return player2.getSymbol()
         }
     }
+
+    ui(player1, player2)
+
     
     return {currentSymbol}
 } ()
