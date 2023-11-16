@@ -1,0 +1,21 @@
+.game {
+    display: flex;
+    justify-content: center;
+
+    .board {
+        width: 240px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+.tile {
+    background-color: green;
+    height: 80px;
+    width: 80px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2rem;
+}
