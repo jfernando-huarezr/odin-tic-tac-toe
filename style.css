@@ -25,8 +25,9 @@ h1 {
 
 .container {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   padding: 20px;
+  gap: 100px;
 }
 .container .player1, .container .player2 {
   display: flex;
