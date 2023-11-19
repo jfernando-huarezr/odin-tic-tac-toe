@@ -159,8 +159,8 @@ const ui = function (player1, player2) {
 }
 
 const game = function () {
-    const player1 = player("Fernando", "X")
-    const player2 = player("Anonimo", "O")
+    const player1 = player("Player 1", "X")
+    const player2 = player("Player 2", "O")
     let turn = 0
 
     const currentSymbol = function () {    
