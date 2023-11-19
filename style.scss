@@ -10,7 +10,7 @@
 }
 
 .tile {
-    background-color: green;
+    background-color: #A2BC40;
     height: 80px;
     width: 80px;
     border: 1px solid black;
@@ -18,4 +18,34 @@
     justify-content: center;
     align-items: center;
     font-size: 2rem;
+}
+
+h1 {
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+
+    .player1, .player2 {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+
+        .points {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+    }
+}
+
+.scores {
+    display: flex;
+    justify-content: center;
+}
+
+.hidden {
+    display: none;
 }
